@@ -47,12 +47,11 @@ function getMaterialsByIds(ids: number[]) {
 }
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600">
+    <div className="min-h-screen bg-white border-16 border-green-600" style={{ borderWidth: '16px' }}>
       {' '}
       {/* Hero Section */}{' '}
-      <div className="relative overflow-hidden bg-gradient-to-r from-green-600 via-green-500 to-yellow-500">
+      <div className="relative overflow-hidden bg-white border-b-8 border-green-600">
         {' '}
-        <div className="absolute inset-0 bg-green-800 opacity-30"></div>{' '}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
           {' '}
           <div className="text-center">
@@ -64,7 +63,7 @@ export default function Home() {
               {' '}
               SENJA DI MENTARI{' '}
             </h1>{' '}
-            <p className="text-xl sm:text-2xl text-white font-bold mb-8 max-w-3xl mx-auto drop-shadow-lg"> Where every cup tells a story of sunrise and sunset flavors </p>{' '}
+            <p className="text-xl sm:text-2xl text-green-800 font-bold mb-8 max-w-3xl mx-auto drop-shadow-lg"> Where every cup tells a story of sunrise and sunset flavors </p>{' '}
             <div className="flex justify-center items-center">
               {' '}
               <Link href="/payment">
@@ -78,17 +77,6 @@ export default function Home() {
               </Link>
             </div>{' '}
           </div>{' '}
-        </div>{' '}
-        {/* Decorative wave */}{' '}
-        <div className="absolute bottom-0 left-0 right-0">
-          {' '}
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {' '}
-            <path
-              d="M0,64L48,74.7C96,85,192,107,288,112C384,117,480,107,576,90.7C672,75,768,53,864,48C960,43,1056,53,1152,64C1248,75,1344,85,1392,90.7L1440,96L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"
-              fill="rgb(34 197 94)"
-            />{' '}
-          </svg>{' '}
         </div>{' '}
       </div>{' '}
       {/* Self Service Materials Section */}{' '}
@@ -106,7 +94,7 @@ export default function Home() {
               SELF SERVICE MATERIALS
             </h2>{' '}
           </div>{' '}
-          <p className="text-lg text-white font-semibold max-w-2xl mx-auto drop-shadow-md"> Premium coffee beans and fresh ingredients for your perfect brew at home </p>{' '}
+          <p className="text-lg text-green-800 font-semibold max-w-2xl mx-auto drop-shadow-md"> Premium coffee beans and fresh ingredients for your perfect brew at home </p>{' '}
         </div>{' '}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {' '}
@@ -224,7 +212,7 @@ export default function Home() {
         </div>{' '}
       </section>{' '}
       {/* Footer */}{' '}
-      <footer className="bg-green-700 text-white py-12 border-t-8 border-yellow-400">
+      <footer className="bg-green-700 text-white py-12 border-t-16 border-yellow-400" style={{ borderTopWidth: '16px' }}>
         {' '}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {' '}
@@ -237,24 +225,24 @@ export default function Home() {
               SENJA DI MENTARI
             </h3>{' '}
             <p className="text-white font-bold mb-6 drop-shadow-md"> Brewing the perfect moments from sunrise to sunset </p>{' '}
-            <div className="flex justify-center space-x-6">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:space-x-6 sm:gap-0">
               {' '}
-              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400">
+              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400 w-full sm:w-auto">
                 {' '}
                 ABOUT US{' '}
               </Button>{' '}
-              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400">
+              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400 w-full sm:w-auto">
                 {' '}
                 CONTACT{' '}
               </Button>{' '}
-              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400">
+              <Button variant="light" className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400 w-full sm:w-auto">
                 {' '}
                 HOURS{' '}
               </Button>{' '}
-              <Link href="/payment">
+              <Link href="/payment" className="w-full sm:w-auto">
                 <Button
                   variant="light"
-                  className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400"
+                  className="text-yellow-300 hover:text-green-800 font-bold border-2 border-yellow-400 hover:bg-yellow-400 w-full sm:w-auto"
                   startContent={<QrCodeIcon className="w-4 h-4" />}
                 >
                   PAYMENT

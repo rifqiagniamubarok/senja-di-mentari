@@ -19,12 +19,17 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600">
+    <div className="min-h-screen bg-white border-16 border-green-600" style={{ borderWidth: '16px' }}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 via-green-500 to-yellow-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white border-b-8 border-green-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <Button variant="light" startContent={<ArrowLeftIcon className="w-5 h-5" />} className="text-white hover:bg-white/10 font-bold" onPress={() => router.back()}>
+            <Button
+              variant="light"
+              startContent={<ArrowLeftIcon className="w-5 h-5" />}
+              className="text-green-800 hover:bg-green-100 font-bold border-2 border-green-600"
+              onPress={() => router.back()}
+            >
               BACK
             </Button>
             <h1
@@ -190,14 +195,14 @@ export default function PaymentPage() {
 
         {/* Bottom Notice */}
         <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-green-600 via-green-500 to-yellow-500 rounded-lg shadow-xl p-6 max-w-2xl mx-auto border-4 border-red-600">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto border-8 border-green-600">
             <h3
-              className="text-lg font-black text-white mb-2 drop-shadow-md"
+              className="text-lg font-black text-yellow-300 mb-2 drop-shadow-md"
               style={{ textShadow: '2px 2px 0px #dc2626, -1px -1px 0px #dc2626, 1px -1px 0px #dc2626, -1px 1px 0px #dc2626' }}
             >
               THANK YOU FOR CHOOSING SENJA DI MENTARI!
             </h3>
-            <p className="text-white font-bold drop-shadow-sm">
+            <p className="text-green-800 font-bold drop-shadow-sm">
               Every payment and donation helps us continue our mission of bringing you exceptional coffee experiences from sunrise to sunset. We appreciate your support! ☕
             </p>
           </div>
