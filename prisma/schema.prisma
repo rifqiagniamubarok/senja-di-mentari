@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Material model (coffee beans, milk, etc.)
+model Material {
+  id          String  @id @default(cuid())
+  title       String
+  brand       String
+  description String
+  perunit     String  // e.g., "10 - 12 grams", "100 ml"
+  price       Int     // price in Indonesian Rupiah (IDR)
+  publish     Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  menuMaterials MenuMaterial[]
+
+  @@map("materials")
+}
+
+// Menu model (coffee drinks)
+model Menu {
+  id          String  @id @default(cuid())
+  title       String
+  price       Int     // price in Indonesian Rupiah (IDR)
+  publish     Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  menuMaterials MenuMaterial[]
+
+  @@map("menus")
+}
+
+// Junction table for many-to-many relationship between Menu and Material
+model MenuMaterial {
+  id         String @id @default(cuid())
+  menuId     String
+  materialId String
+
+  // Relations
+  menu     Menu     @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  material Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@unique([menuId, materialId])
+  @@map("menu_materials")
+}
+
+

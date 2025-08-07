@@ -13,18 +13,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const email = credentials.email as string;
         const password = credentials.password as string;
 
-        const envEmail = process.env.EMAIL;
-        const envPassword = process.env.PASSWORD;
+        const envEmail = process.env.EMAIL as string;
+        const envPassword = process.env.PASSWORD as string;
 
-        if (email !== envEmail || password !== envPassword) {
+        if (email === envEmail && password === envPassword) {
+          return {
+            id: '1',
+            name: 'Admin',
+            email: envEmail,
+          };
+        } else {
           throw new Error('Invalid credentials');
         }
-
-        return {
-          id: '1',
-          name: 'Admin',
-          email: envEmail,
-        };
       },
     }),
   ],
