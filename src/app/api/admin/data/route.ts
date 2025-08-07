@@ -1,9 +1,27 @@
 import { NextResponse } from 'next/server';
-import { getMaterials, getMenus } from '@/lib/actions';
+import { prisma } from '@/utils/prisma';
 
 export async function GET() {
   try {
-    const [materials, menus] = await Promise.all([getMaterials(), getMenus()]);
+    const [materials, menus] = await Promise.all([
+      prisma.material.findMany({
+        orderBy: {
+          id: 'asc',
+        },
+      }),
+      prisma.menu.findMany({
+        include: {
+          menuMaterials: {
+            include: {
+              material: true,
+            },
+          },
+        },
+        orderBy: {
+          id: 'asc',
+        },
+      })
+    ]);
 
     return NextResponse.json({
       materials,

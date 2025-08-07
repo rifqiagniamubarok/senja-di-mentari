@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     config.externals = [...config.externals, '@prisma/client'];
     return config;
   },
+  outputFileTracing: false,
 };
 
 export default nextConfig;
