@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/utils/prisma';
 
 // PATCH /api/admin/materials/[id]/publish - Toggle publish status
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { publish } = body;
 
     const material = await prisma.material.update({
-      where: { id: params.id },
+      where: { id },
       data: { publish },
     });
 

@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/utils/prisma';
 
 // GET /api/admin/materials/[id] - Get single material
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const material = await prisma.material.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!material) {
@@ -20,13 +21,14 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 }
 
 // PUT /api/admin/materials/[id] - Update material
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { title, brand, description, perunit, price } = body;
 
     const material = await prisma.material.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         brand,
@@ -44,16 +46,17 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 // DELETE /api/admin/materials/[id] - Delete material
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     // First delete related menu materials
     await prisma.menuMaterial.deleteMany({
-      where: { materialId: params.id },
+      where: { materialId: id },
     });
 
     // Then delete the material
     await prisma.material.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Material deleted successfully' });
